@@ -12,14 +12,10 @@ package sfti.chapter2
 //-----------------------------------------------------------------------------
 object Problem10 {
   def pow(x: Double, n: Int): Double = {
-    if (n == 0)             // n == 0
-      1
-    else if (n < 0)         // n < 0
-      1 / pow(x, -n)
-    else if (n % 2 == 0)    // n > 0 and even
-      pow(pow(x, n / 2), 2)
-    else                    // n > 0 and odd
-      x * pow(x, n - 1)
+    if (n == 0)             1
+    else if (n < 0)         1 / pow(x, -n)
+    else if (n % 2 == 0)    pow(pow(x, n / 2), 2)
+    else                    x * pow(x, n - 1)
   }
   
   def apply() {
