@@ -1,3 +1,3 @@
 object Echo extends App {
-    println("Echo " + (args mkString " "))
+  println("Echo " + (args mkString " "))
 }

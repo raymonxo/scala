@@ -12,6 +12,7 @@ project/plugins/project/
 # Scala-IDE specific
 .cache
 .classpath
+.metadata
 .settings
 bin/
 
