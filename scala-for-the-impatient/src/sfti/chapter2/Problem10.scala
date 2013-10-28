@@ -14,13 +14,13 @@ object Problem10 {
   def pow(x: Double, n: Int): Double = {
     if (n == 0)           1
     else if (n < 0)       1 / pow(x, -n)
-    else if (n % 2 == 0)  pow(pow(x, n / 2), 2)
+    else if (n % 2 == 0)  { val y = pow(x, n / 2); y * y } 
     else                  x * pow(x, n - 1)
   }
   
   def apply() {
     assert(pow(5, 0) == 1)
-    assert(pow(16, -2) == 4)
+    assert(pow(16, -2) == 0.00390625)
     assert(pow(2, 6) == 64)
     assert(pow(2, 7) == 128)
   }
