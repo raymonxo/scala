@@ -12,7 +12,7 @@ object Problem3 {
         if (len == 1)          xs(0)      // Only element, yield
         else if (i % 2 == 1)   xs(i - 1)  // Odd index, yield previous
         else if (i == len - 1) xs(i)      // Even last index, yield (nothing to swap)
-      	else                   xs(i + 1)  // Even index, yield next
+        else                   xs(i + 1)  // Even index, yield next
   }
   
   def test[A](xs: Array[A], xsSwapped: Array[A]) {
