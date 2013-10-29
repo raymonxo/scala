@@ -10,11 +10,9 @@ import scala.collection.mutable.ArrayBuffer
 object Problem4 {
   def partitionStable(xs: Array[Int], pivot: Int): Array[Int] = {
     val lt, gte = ArrayBuffer[Int]()
-
     for (x <- xs)
       if (x < pivot) lt += x
       else           gte += x
-    
     (lt ++ gte).toArray
   }
   
