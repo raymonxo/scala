@@ -10,7 +10,7 @@ object Problem1 {
   
   def adjustPrices(gizmoPrices: Map[Gizmo, Price], pricePercentage: Double): Map[Gizmo, Price] = {
     for ((gizmo, price) <- gizmoPrices)
-      yield (gizmo, price * pricePercentage)
+      yield gizmo -> price * pricePercentage
   }
   
   def apply() {
