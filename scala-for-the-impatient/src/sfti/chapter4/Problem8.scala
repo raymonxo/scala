@@ -19,7 +19,7 @@ object Problem8 {
   
   def apply() {
     test(Array(1), 1, 1)
-    test(Array(1,2,3,4,5,6,7,8,9), 1, 9)
-    test(Array(5,1,-9,12,-14), -14, 12)
+    test(Array(1, 2, 3, 4, 5, 6, 7, 8, 9), 1, 9)
+    test(Array(5, 1, -9, 12, -14), -14, 12)
   }
 }
