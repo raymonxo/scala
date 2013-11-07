@@ -9,4 +9,5 @@ object ScalaForTheImpatient extends App {
   chapter3.Problem2()
   chapter3.Problem3()
   chapter3.Problem4()
+  chapter4.Problem1()
 }
