@@ -16,21 +16,21 @@ object Problem1 {
   def apply() {
     // Arrange
     val gizmoPrices = Map[Gizmo, Price](
-	      "Neca Toys Plush Figures - Gremlins" -> 16.85,
-	      "Neca Gremlins Electronic Dancing Plush Doll Gizmo" -> 33.50,
-	      "Funko Gizmo Pop" -> 10.29,
-	      "Gizmo 6 inch plush from Gremlins" -> 14.99
-	    )
+          "Neca Toys Plush Figures - Gremlins" -> 16.85,
+          "Neca Gremlins Electronic Dancing Plush Doll Gizmo" -> 33.50,
+          "Funko Gizmo Pop" -> 10.29,
+          "Gizmo 6 inch plush from Gremlins" -> 14.99
+        )
     val pricePercentage = .9
     val expectedGizmoPrices = Map[Gizmo, Price](
-	      "Neca Toys Plush Figures - Gremlins" -> 15.165,
-	      "Neca Gremlins Electronic Dancing Plush Doll Gizmo" -> 30.15,
-	      "Funko Gizmo Pop" -> 9.261,
-	      "Gizmo 6 inch plush from Gremlins" -> 13.491
-	    )
+          "Neca Toys Plush Figures - Gremlins" -> 15.165,
+          "Neca Gremlins Electronic Dancing Plush Doll Gizmo" -> 30.15,
+          "Funko Gizmo Pop" -> 9.261,
+          "Gizmo 6 inch plush from Gremlins" -> 13.491
+        )
     
     // Act
-	val adjustedGizmoPrices = adjustPrices(gizmoPrices, pricePercentage)
+    val adjustedGizmoPrices = adjustPrices(gizmoPrices, pricePercentage)
     
     // Assert
     assert(adjustedGizmoPrices == expectedGizmoPrices)
