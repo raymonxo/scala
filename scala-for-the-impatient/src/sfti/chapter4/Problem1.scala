@@ -23,10 +23,10 @@ object Problem1 {
         )
     val pricePercentage = .9
     val expectedGizmoPrices = Map[Gizmo, Price](
-          "Neca Toys Plush Figures - Gremlins" -> 15.165,
-          "Neca Gremlins Electronic Dancing Plush Doll Gizmo" -> 30.15,
-          "Funko Gizmo Pop" -> 9.261,
-          "Gizmo 6 inch plush from Gremlins" -> 13.491
+          "Neca Toys Plush Figures - Gremlins" -> (16.85: Price) * .9,
+          "Neca Gremlins Electronic Dancing Plush Doll Gizmo" -> (33.50: Price) * .9,
+          "Funko Gizmo Pop" -> (10.29: Price) * .9,
+          "Gizmo 6 inch plush from Gremlins" -> (14.99: Price) * .9
         )
     
     // Act
