@@ -11,15 +11,13 @@ object Problem8 {
     (z, x) => (min(x, z._1), max(x, z._2))
   }
   
-  def test(xs: Array[Int], expectedMin: Int, expectedMax: Int) {
-    val result = minMax(xs)
-    assert(result._1 == expectedMin)
-    assert(result._2 == expectedMax)
+  def test(xs: Array[Int], expected: (Int, Int)) {
+    assert(minMax(xs) == expected)
   }
   
   def apply() {
-    test(Array(1), 1, 1)
-    test(Array(1, 2, 3, 4, 5, 6, 7, 8, 9), 1, 9)
-    test(Array(5, 1, -9, 12, -14), -14, 12)
+    test(Array(1), (1, 1))
+    test(Array(1, 2, 3, 4, 5, 6, 7, 8, 9), (1, 9))
+    test(Array(5, 1, -9, 12, -14), (-14, 12))
   }
 }
