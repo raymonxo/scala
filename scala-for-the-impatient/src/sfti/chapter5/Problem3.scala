@@ -7,11 +7,16 @@ package sfti.chapter5
 // is in military time format (between 0 and 23).
 //-----------------------------------------------------------------------------
 object Problem3 {
+  object Time {
+    val HoursPerDay = 24
+    val MinutesPerHour = 60
+  }
+    
   class Time(private val hours: Int, private val minutes: Int) {
     require(hours >= 0)
-    require(hours <= 23)
+    require(hours < Time.HoursPerDay)
     require(minutes >= 0)
-    require(minutes <= 60)
+    require(minutes < Time.MinutesPerHour)
     
     def before(other: Time): Boolean = {
       hours < other.hours ||
