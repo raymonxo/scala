@@ -10,7 +10,7 @@ object FunSets {
     */
   type Set = Int => Boolean
 
-  def emptySet: Set = (_: Int) => false
+  val emptySet: Set = (_: Int) => false
 
   /**
     * Indicates whether a set contains a given element.
