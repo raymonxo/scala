@@ -144,17 +144,17 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
 
   def filterAcc(p: Tweet => Boolean, acc: TweetSet): TweetSet =
     if (p(elem)) left filterAcc(p, right filterAcc(p, acc incl elem))
-    else left filterAcc(p, right filterAcc(p, acc))
+    else         left filterAcc(p, right filterAcc(p, acc))
 
   def union(that: TweetSet): TweetSet = left union (right union (that incl elem))
 
   def mostRetweeted: Tweet = {
     def max(t1: Tweet, t2: Tweet) = if (t1.retweets > t2.retweets) t1 else t2
 
-    if (left.isEmpty && right.isEmpty) elem
+    if (left.isEmpty && right.isEmpty)       elem
     else if (!left.isEmpty && right.isEmpty) max(elem, left.mostRetweeted)
     else if (left.isEmpty && !right.isEmpty) max(elem, right.mostRetweeted)
-    else max(elem, max(left.mostRetweeted, right.mostRetweeted))
+    else                                     max(elem, max(left.mostRetweeted, right.mostRetweeted))
   }
 
   def isEmpty: Boolean = false
@@ -164,20 +164,20 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
     */
 
   def contains(x: Tweet): Boolean =
-    if (x.text < elem.text) left.contains(x)
+    if (x.text < elem.text)      left.contains(x)
     else if (elem.text < x.text) right.contains(x)
-    else true
+    else                         true
 
   def incl(x: Tweet): TweetSet = {
-    if (x.text < elem.text) new NonEmpty(elem, left incl x, right)
+    if (x.text < elem.text)      new NonEmpty(elem, left incl x, right)
     else if (elem.text < x.text) new NonEmpty(elem, left, right incl x)
-    else this
+    else                         this
   }
 
   def remove(tw: Tweet): TweetSet =
-    if (tw.text < elem.text) new NonEmpty(elem, left remove tw, right)
+    if (tw.text < elem.text)      new NonEmpty(elem, left remove tw, right)
     else if (elem.text < tw.text) new NonEmpty(elem, left, right remove tw)
-    else left union right
+    else                          left union right
 
   def foreach(f: Tweet => Unit): Unit = {
     f(elem)
