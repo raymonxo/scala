@@ -1,6 +1,12 @@
 import objsets._
 
-TweetReader.allTweets
+//TweetReader.
+//  allTweets.
+//  descendingByRetweet.
+//  foreach(println)
 
-3
-5
+//GoogleVsApple.
+//  appleTweets.
+//  descendingByRetweet.
+//  foreach(println)
+

@@ -80,7 +80,15 @@ abstract class TweetSet {
     * Question: Should we implment this method here, or should it remain abstract
     * and be implemented in the subclasses?
     */
-  def descendingByRetweet: TweetList = ???
+  def descendingByRetweet: TweetList = {
+    def acc(set: TweetSet): TweetList =
+      if (set.isEmpty) Nil
+      else {
+        val most = set.mostRetweeted
+        new Cons(most, acc(set.remove(most)))
+      }
+    acc(this)
+  }
 
   /**
     * The following methods are already implemented
@@ -135,20 +143,18 @@ class Empty extends TweetSet {
 class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
 
   def filterAcc(p: Tweet => Boolean, acc: TweetSet): TweetSet =
-    if (p(elem))  left.filterAcc(p, right.filterAcc(p, acc incl elem))
-    else          left.filterAcc(p, right.filterAcc(p, acc))
+    if (p(elem)) left filterAcc(p, right filterAcc(p, acc incl elem))
+    else left filterAcc(p, right filterAcc(p, acc))
 
-  def union(that: TweetSet): TweetSet =
-    if (that contains elem) that union left union right
-    else                    that union left union right incl elem
+  def union(that: TweetSet): TweetSet = left union (right union (that incl elem))
 
   def mostRetweeted: Tweet = {
     def max(t1: Tweet, t2: Tweet) = if (t1.retweets > t2.retweets) t1 else t2
 
-    if (left.isEmpty && right.isEmpty)        elem
-    else if (!left.isEmpty && right.isEmpty)  max(elem, left.mostRetweeted)
-    else if (left.isEmpty && !right.isEmpty)  max(elem, right.mostRetweeted)
-    else                                      max(elem, max(left.mostRetweeted, right.mostRetweeted))
+    if (left.isEmpty && right.isEmpty) elem
+    else if (!left.isEmpty && right.isEmpty) max(elem, left.mostRetweeted)
+    else if (left.isEmpty && !right.isEmpty) max(elem, right.mostRetweeted)
+    else max(elem, max(left.mostRetweeted, right.mostRetweeted))
   }
 
   def isEmpty: Boolean = false
@@ -163,20 +169,20 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
     else true
 
   def incl(x: Tweet): TweetSet = {
-    if (x.text < elem.text) new NonEmpty(elem, left.incl(x), right)
-    else if (elem.text < x.text) new NonEmpty(elem, left, right.incl(x))
+    if (x.text < elem.text) new NonEmpty(elem, left incl x, right)
+    else if (elem.text < x.text) new NonEmpty(elem, left, right incl x)
     else this
   }
 
   def remove(tw: Tweet): TweetSet =
-    if (tw.text < elem.text) new NonEmpty(elem, left.remove(tw), right)
-    else if (elem.text < tw.text) new NonEmpty(elem, left, right.remove(tw))
-    else left.union(right)
+    if (tw.text < elem.text) new NonEmpty(elem, left remove tw, right)
+    else if (elem.text < tw.text) new NonEmpty(elem, left, right remove tw)
+    else left union right
 
   def foreach(f: Tweet => Unit): Unit = {
     f(elem)
-    left.foreach(f)
-    right.foreach(f)
+    left foreach f
+    right foreach f
   }
 }
 
@@ -190,7 +196,7 @@ trait TweetList {
   def foreach(f: Tweet => Unit): Unit =
     if (!isEmpty) {
       f(head)
-      tail.foreach(f)
+      tail foreach f
     }
 }
 
@@ -211,14 +217,17 @@ object GoogleVsApple {
   val google = List("android", "Android", "galaxy", "Galaxy", "nexus", "Nexus")
   val apple = List("ios", "iOS", "iphone", "iPhone", "ipad", "iPad")
 
-  lazy val googleTweets: TweetSet = ???
-  lazy val appleTweets: TweetSet = ???
+  def tweetContainsAny(tweet: Tweet, words: List[String]): Boolean = words exists (tweet.text.contains(_))
+
+  lazy val googleTweets: TweetSet = TweetReader.allTweets filter (tweetContainsAny(_, google))
+
+  lazy val appleTweets: TweetSet = TweetReader.allTweets filter (tweetContainsAny(_, apple))
 
   /**
     * A list of all tweets mentioning a keyword from either apple or google,
     * sorted by the number of retweets.
     */
-  lazy val trending: TweetList = ???
+  lazy val trending: TweetList = (googleTweets union appleTweets).descendingByRetweet
 }
 
 object Main extends App {
