@@ -14,7 +14,6 @@ import raymitchell.euler.util.FibonacciSequence
 object Problem2 {
 
   def solve(): Int = {
-
     FibonacciSequence
       .takeWhile(_ <= 4000000)
       .filter(_ % 2 == 0)
