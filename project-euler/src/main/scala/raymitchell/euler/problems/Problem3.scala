@@ -10,9 +10,10 @@ object Problem3 {
   def solve(): Long = {
     var n = 600851475143l
     var candidate = 2l
-    var lastFactor = n
+    var lastFactor = 0l
+    val maxPossible = Math.sqrt(n).toLong
 
-    while (candidate <= n) {
+    while (candidate <= maxPossible) {
       if (n % candidate == 0) {
         lastFactor = candidate
         n /= candidate
