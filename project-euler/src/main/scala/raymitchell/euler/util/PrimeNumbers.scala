@@ -4,10 +4,11 @@ package raymitchell.euler.util
   * Iterable through all prime numbers.
   */
 object PrimeNumbers extends Iterable[Int] {
+  // Cache of previously computed primes
+  // TODO: Make thread safe
+  private var primes = Vector[Int]()
 
   override def iterator: Iterator[Int] = new Iterator[Int] {
-    // Cache of previously computed primes
-    private var primes = Vector[Int]()
 
     override def hasNext: Boolean = true
 

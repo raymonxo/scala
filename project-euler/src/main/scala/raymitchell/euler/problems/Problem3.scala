@@ -7,11 +7,11 @@ package raymitchell.euler.problems
   */
 object Problem3 {
 
-  def solve(): Long = {
+  def solve(): Int = {
     var n = 600851475143l
-    var candidate = 2l
-    var lastFactor = 0l
-    val maxPossible = Math.sqrt(n).toLong
+    var candidate = 2
+    var lastFactor = 0
+    val maxPossible = Math.sqrt(n).toInt
 
     while (candidate <= maxPossible) {
       if (n % candidate == 0) {
