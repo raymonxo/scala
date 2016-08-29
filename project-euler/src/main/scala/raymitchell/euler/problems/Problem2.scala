@@ -13,7 +13,7 @@ import raymitchell.euler.util.FibonacciSequence
   */
 object Problem2 {
 
-  def solve(): Int = {
+  def solve(): Long = {
     FibonacciSequence
       .takeWhile(_ <= 4000000)
       .filter(_ % 2 == 0)

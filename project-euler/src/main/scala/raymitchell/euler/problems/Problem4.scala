@@ -8,7 +8,7 @@ package raymitchell.euler.problems
   */
 object Problem4 {
 
-  def solve(): Int = {
+  def solve(): Long = {
 
     def isPalindromicNumber(n: Int) = n.toString == n.toString.reverse
 

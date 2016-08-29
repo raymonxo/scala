@@ -7,7 +7,7 @@ package raymitchell.euler.problems
   */
 object Problem3 {
 
-  def solve(): Int = {
+  def solve(): Long = {
     var n = 600851475143l
     var candidate = 2
     var lastFactor = 0
