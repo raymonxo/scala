@@ -10,6 +10,6 @@ import raymitchell.euler.util.MathFunc
 object Problem5 {
 
   def solve(): Long = {
-    1l to 20 reduce ((acc, n) => MathFunc.lcm(acc, n))
+    1L to 20 reduce ((acc, n) => MathFunc.lcm(acc, n))
   }
 }
