@@ -1,5 +1,7 @@
 package raymitchell.euler.problems
 
+import raymitchell.euler.util.MathEx
+
 /**
   * The prime factors of 13195 are 5, 7, 13 and 29.
   *
@@ -7,21 +9,5 @@ package raymitchell.euler.problems
   */
 object Problem3 {
 
-  def solve(): Long = {
-    var n = 600851475143l
-    var candidate = 2
-    var lastFactor = 0
-    val maxPossible = Math.sqrt(n).toInt
-
-    while (candidate <= maxPossible) {
-      if (n % candidate == 0) {
-        lastFactor = candidate
-        n /= candidate
-      } else {
-        candidate += 1
-      }
-    }
-
-    lastFactor
-  }
+  def solve(): Long = MathEx.primeFactors(600851475143L).max
 }

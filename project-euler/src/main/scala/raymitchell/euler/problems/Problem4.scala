@@ -8,14 +8,12 @@ package raymitchell.euler.problems
   */
 object Problem4 {
 
-  def solve(): Long = {
-
-    def isPalindromicNumber(n: Int) = n.toString == n.toString.reverse
-
+  def solve(): Int =
     (for {
       a <- 100 to 999
       b <- 100 to 999
       if isPalindromicNumber(a * b)
     } yield a * b).max
-  }
+
+  private def isPalindromicNumber(n: Int) = n.toString == n.toString.reverse
 }

@@ -1,7 +1,5 @@
 package raymitchell.euler.problems
 
-import raymitchell.euler.util.MathFunc
-
 /**
   * The sum of the squares of the first ten natural numbers is,
   *
@@ -19,12 +17,9 @@ import raymitchell.euler.util.MathFunc
   */
 object Problem6 {
 
-  def solve(): Long = {
+  def solve(): Int = squareOfSum(1 to 100) - sumOfSquares(1 to 100)
 
-    def sumOfSquares(ns: Seq[Int]): Int = ns.map(Math.pow(_, 2)).sum.toInt
+  private def squareOfSum(ns: Seq[Int]): Int = ns.sum * ns.sum
 
-    def squareOfSum(ns: Seq[Int]): Int = Math.pow(ns.sum, 2).toInt
-
-    squareOfSum(1 to 100) - sumOfSquares(1 to 100)
-  }
+  private def sumOfSquares(ns: Seq[Int]): Int = ns.map(n => n * n).sum
 }
