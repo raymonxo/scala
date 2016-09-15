@@ -1,6 +1,6 @@
 package raymitchell.euler.problems
 
-import raymitchell.euler.util.MathEx
+import raymitchell.euler.util.Math._
 
 /**
   * 2520 is the smallest number that can be divided by each of the numbers from
@@ -11,5 +11,7 @@ import raymitchell.euler.util.MathEx
   */
 object Problem5 {
 
-  def solve(): Int = 1 to 20 reduce ((acc, n) => MathEx.lcm(acc, n))
+  def solve(): Int =
+    (1 to 20)
+      .reduce((acc, n) => lcm(acc, n))
 }

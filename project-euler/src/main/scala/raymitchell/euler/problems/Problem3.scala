@@ -1,6 +1,6 @@
 package raymitchell.euler.problems
 
-import raymitchell.euler.util.MathEx
+import raymitchell.euler.util.Math._
 
 /**
   * The prime factors of 13195 are 5, 7, 13 and 29.
@@ -9,5 +9,7 @@ import raymitchell.euler.util.MathEx
   */
 object Problem3 {
 
-  def solve(): Long = MathEx.primeFactors(600851475143L).max
+  def solve(): Long =
+    primeFactors(600851475143L)
+      .max
 }

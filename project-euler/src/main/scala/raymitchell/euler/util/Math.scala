@@ -2,16 +2,16 @@ package raymitchell.euler.util
 
 import scala.annotation.tailrec
 
-object MathEx {
+object Math {
   /**
     * All Fibonacci numbers.
     *
     * Determine the next Fibonacci number by adding previous two numbers.
     */
-  val fibonaccis: Stream[Int] = 0 #:: 1 #::
-    fibonaccis
-      .zip(fibonaccis.tail)   // Zip n-1 and n-2 together
-      .map(n => n._1 + n._2)  // n-1 + n-2
+  val fibonacciSequence: Stream[Int] = 0 #:: 1 #::
+    fibonacciSequence
+      .zip(fibonacciSequence.tail)  // Zip n-1 and n-2 together
+      .map(n => n._1 + n._2)        // n-1 + n-2
 
   /**
     * All prime numbers.
@@ -19,10 +19,10 @@ object MathEx {
     * Determine the next prime by iterating through natural numbers and finding
     * the next number that has no previous prime as a factor.
     */
-  val primes: Stream[Int] = 2 #::
+  val primeSequence: Stream[Int] = 2 #::
     Stream
       .from(3)
-      .filter(n => primes           // Possible factors = previous primes
+      .filter(n => primeSequence    // Possible factors = previous primes
         .takeWhile(p => p * p <= n) // Max possible factor is sqrt(n)
         .forall(n % _ != 0))        // To be prime must have no factors
 
@@ -49,7 +49,7 @@ object MathEx {
       else                   go(a, primes.tail, factors)     // Next candidate
     }
 
-    go(n, primes, Nil)
+    go(n, primeSequence, Nil)
   }
 
   /**
