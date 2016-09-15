@@ -10,8 +10,8 @@ object Math {
     */
   val fibonacciSequence: Stream[Int] = 0 #:: 1 #::
     fibonacciSequence
-      .zip(fibonacciSequence.tail)  // Zip n-1 and n-2 together
-      .map(n => n._1 + n._2)        // n-1 + n-2
+      .zip(fibonacciSequence.tail)  // Zip n-2 and n-1 together
+      .map(n => n._1 + n._2)        // n-2 + n-1
 
   /**
     * All prime numbers.
