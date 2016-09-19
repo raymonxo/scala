@@ -1,5 +1,7 @@
 package raymitchell.euler.problems
 
+import raymitchell.euler.util.Math._
+
 /**
   * Let d(n) be defined as the sum of proper divisors of n (numbers less than
   * n which divide evenly into n).
@@ -15,5 +17,16 @@ package raymitchell.euler.problems
   */
 object Problem21 {
 
-  def solve(): Int = ???
+  def solve(): Int = {
+    val divisorSums = for (x <- 1 until 10000) yield (x, x.properDivisors.sum)
+
+    (for {
+      a <- divisorSums
+      b <- divisorSums
+      if a._1 == b._2   // d(a) = b
+      if a._2 == b._1   // d(b) = a
+      if a._1 != b._1   // a != b
+    } yield a._1)
+      .sum
+  }
 }

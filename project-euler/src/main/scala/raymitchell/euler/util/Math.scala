@@ -61,6 +61,20 @@ final class FancyLong(self: Long) {
   }
 
   /**
+    * Get the proper divisors of a number.  The proper divisors of a number are
+    * the numbers less than n which divide evenly into n.
+    */
+  def properDivisors: Seq[Long] = {
+    (for (
+      x <- 1L to scala.math.sqrt(self).toLong
+      if self % x == 0
+    ) yield List(x, self / x))
+      .flatten
+      .distinct
+      .filter(_ != self)
+  }
+
+  /**
     * Get greatest common divisor.
     *
     * Implemented using Euclid's algorithm.

@@ -22,6 +22,10 @@ class MathTests extends FlatSpec with Matchers {
     18.primeFactors.toSet should be (Set(2, 3, 3))
   }
 
+  "Proper divisors" should "return the proper divisors for a non-prime number" in {
+    220.properDivisors.toSet should be (Set(1, 2, 4, 5, 10, 11, 20, 22, 44, 55, 110))
+  }
+
   "Greatest common divisor" should "provide correct answer" in {
     8 gcd 12 should be (4)
   }
