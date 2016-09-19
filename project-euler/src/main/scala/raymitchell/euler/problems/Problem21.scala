@@ -24,7 +24,7 @@ object Problem21 {
       a <- divisorSums
       b <- divisorSums
       if a._2 == b._1   // d(a) = b
-      if a._1 == b._2   // d(b) = a
+      if b._2 == a._1   // d(b) = a
       if a._1 != b._1   // a != b
     } yield a._1)
       .sum
