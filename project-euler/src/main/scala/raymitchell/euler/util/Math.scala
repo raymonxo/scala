@@ -61,8 +61,8 @@ final class FancyLong(self: Long) {
   }
 
   /**
-    * Get the proper divisors of a number.  The proper divisors of a number are
-    * the numbers less than n which divide evenly into n.
+    * Get the proper divisors of a number.  The proper divisors of a number n
+    * are the numbers less than n which divide evenly into n.
     */
   def properDivisors: Seq[Long] = {
     (for (
