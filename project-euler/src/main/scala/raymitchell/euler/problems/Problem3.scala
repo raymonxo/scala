@@ -9,7 +9,5 @@ import raymitchell.euler.util.Math._
   */
 object Problem3 {
 
-  def solve(): Long =
-    primeFactors(600851475143L)
-      .max
+  def solve(): Long = 600851475143L.primeFactors.max
 }

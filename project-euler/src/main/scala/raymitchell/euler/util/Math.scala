@@ -3,6 +3,10 @@ package raymitchell.euler.util
 import scala.annotation.tailrec
 
 object Math {
+  import scala.language.implicitConversions
+
+  implicit def long2FancyLong(x: Long): FancyLong = new FancyLong(x)
+
   /**
     * All Fibonacci numbers.
     *
@@ -25,6 +29,10 @@ object Math {
       .filter(n => primeSequence    // Possible factors = previous primes
         .takeWhile(p => p * p <= n) // Max possible factor is sqrt(n)
         .forall(n % _ != 0))        // To be prime must have no factors
+}
+
+final class FancyLong(self: Long) {
+  import raymitchell.euler.util.Math._
 
   /**
     * Get the prime factors of a number.
@@ -32,24 +40,24 @@ object Math {
     * A prime number is a factor of itself.  If a prime factor appears more
     * than once it will be repeated in the returned list.
     *
-    * Examples:  primeFactors(8)  => List(2, 2, 2)
-    *            primeFactors(17) => List(17)
+    * Examples:  8.primeFactors  => List(2, 2, 2)
+    *            17.primeFactors => List(17)
     */
-  def primeFactors(n: Long): Seq[Long] = {
+  def primeFactors: Seq[Long] = {
 
     @tailrec
     def go(a: Long, primes: Seq[Int], factors: List[Long]): List[Long] = {
       val p = primes.head
 
-      if (a == 1)            factors                         // All found
-      else if (p * p > n)
-        if (factors.isEmpty) List(n)                         // n is prime
-        else                 factors                         // No more factors
-      else if (a % p == 0)   go(a / p, primes, p :: factors) // Add factor
-      else                   go(a, primes.tail, factors)     // Next candidate
+      if (a == 1)               factors                         // All found
+      else if (p * p > self)
+           if (factors.isEmpty) List(self)                      // self prime
+           else                 factors                         // No more
+      else if (a % p == 0)      go(a / p, primes, p :: factors) // Found
+      else                      go(a, primes.tail, factors)     // Next
     }
 
-    go(n, primeSequence, Nil)
+    go(self, primeSequence, Nil)
   }
 
   /**
@@ -58,12 +66,14 @@ object Math {
     * Implemented using Euclid's algorithm.
     */
   @tailrec
-  def gcd(a: Int, b: Int): Int = if (b == 0) a else gcd(b, a % b)
+  def gcd(other: Long): Long =
+    if (other == 0) self
+    else            other gcd (self % other)
 
   /**
     * Get least common multiple.
     *
     * Implemented using reduction by the greatest common divisor.
     */
-  def lcm(a: Int, b: Int): Int = a * (b / gcd(a, b))
+  def lcm(other: Long): Long = self * (other / (self gcd other))
 }
