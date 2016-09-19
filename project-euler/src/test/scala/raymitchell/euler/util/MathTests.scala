@@ -2,7 +2,7 @@ package raymitchell.euler.util
 
 import org.scalatest.{FlatSpec, Matchers}
 
-class MathFuncTests extends FlatSpec with Matchers {
+class MathTests extends FlatSpec with Matchers {
 
   "Fibonaccis" should "start with the first 7 Fibonacci numbers" in {
     Math.fibonacciSequence.take(7) should be (Seq(0, 1, 1, 2, 3, 5, 8))
@@ -20,11 +20,11 @@ class MathFuncTests extends FlatSpec with Matchers {
     Math.primeFactors(18).toSet should be (Set(2, 3, 3))
   }
 
-  "Greatest commond divisor" should "provide correct answer" in {
+  "Greatest common divisor" should "provide correct answer" in {
     Math.gcd(8, 12) should be (4)
   }
 
-  "Least commond multiple" should "provide correct answer" in {
+  "Least common multiple" should "provide correct answer" in {
     Math.lcm(8, 12) should be (24)
   }
 }
