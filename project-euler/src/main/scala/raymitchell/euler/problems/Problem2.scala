@@ -14,7 +14,7 @@ import raymitchell.euler.util.Math._
 object Problem2 {
 
   def solve(): Int =
-    fibonacciSequence
+    FibonacciSequence
       .takeWhile(_ <= 4000000)
       .filter(_ % 2 == 0)
       .sum

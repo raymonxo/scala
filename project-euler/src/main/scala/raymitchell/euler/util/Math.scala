@@ -12,9 +12,9 @@ object Math {
     *
     * Determine the next Fibonacci number by adding previous two numbers.
     */
-  val fibonacciSequence: Stream[Int] = 0 #:: 1 #::
-    fibonacciSequence
-      .zip(fibonacciSequence.tail)  // Zip n-2 and n-1 together
+  val FibonacciSequence: Stream[Int] = 0 #:: 1 #::
+    FibonacciSequence
+      .zip(FibonacciSequence.tail)  // Zip n-2 and n-1 together
       .map(n => n._1 + n._2)        // n-2 + n-1
 
   /**
@@ -23,10 +23,10 @@ object Math {
     * Determine the next prime by iterating through natural numbers and finding
     * the next number that has no previous prime as a factor.
     */
-  val primeSequence: Stream[Int] = 2 #::
+  val PrimeSequence: Stream[Int] = 2 #::
     Stream
       .from(3)
-      .filter(n => primeSequence    // Possible factors = previous primes
+      .filter(n => PrimeSequence    // Possible factors = previous primes
         .takeWhile(p => p * p <= n) // Max possible factor is sqrt(n)
         .forall(n % _ != 0))        // To be prime must have no factors
 
@@ -37,10 +37,10 @@ object Math {
     * numbers. So the 7th triangle number would be 1 + 2 + 3 + 4 + 5 + 6 +
     * 7 = 28.
     */
-  val triangleNumberSequence: Stream[Int] = 1 #::
+  val TriangleNumberSequence: Stream[Int] = 1 #::
     Stream
       .from(2)
-      .zip(triangleNumberSequence)
+      .zip(TriangleNumberSequence)  // Zip previous triangle # with next nat #
       .map(n => n._1 + n._2)
 }
 
@@ -70,7 +70,7 @@ final class FancyLong(self: Long) {
       else                      go(a, primes.tail, factors)     // Next
     }
 
-    go(self, primeSequence, Nil)
+    go(self, PrimeSequence, Nil)
   }
 
 

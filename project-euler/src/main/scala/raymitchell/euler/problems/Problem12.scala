@@ -27,7 +27,7 @@ import raymitchell.euler.util.Math._
 object Problem12 {
 
   def solve(): Int =
-    triangleNumberSequence
+    TriangleNumberSequence
       .dropWhile(_.divisors.length <= 500)
       .head
 }
