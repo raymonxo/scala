@@ -77,8 +77,8 @@ object Problem11 {
       slice(r, c, 0,  1).product,  // East
       slice(r, c, 1,  1).product,  // South-east
       slice(r, c, 1,  0).product,  // South
-      slice(r, c, 1, -1).product)  // South-west
-    )
+      slice(r, c, 1, -1).product   // South-west
+    ))
       .flatten
       .max
   }
