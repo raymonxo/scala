@@ -56,29 +56,29 @@ object Problem11 {
         Array(20, 73, 35, 29, 78, 31, 90,  1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57,  5, 54),
         Array( 1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52,  1, 89, 19, 67, 48)
       )
-    val size = 20
-    val sliceSize = 4
+    val gridSize = 20
 
-    def slice(row: Int, col: Int, rowInc: Boolean, colInc: Boolean): Seq[Int] = {
+    def slice(row: Int, col: Int, rowStep: Int, colStep: Int): Seq[Int] = {
+      val sliceSize = 4
+
       for {
         i <- 0 until sliceSize
-        if !rowInc || (rowInc && row + i < size)
-        if !colInc || (colInc && col + i < size)
-        r <- row + (if (rowInc) i else 0)
-        c <- col + (if (colInc) i else 0)
+        r = row + i * rowStep
+        c = col + i * colStep
+        if r >= 0 && r < gridSize
+        if c >= 0 && c < gridSize
       } yield grid(r)(c)
     }
 
-    def horizontal(row: Int, col: Int): Int = slice(row, col, true, false).product
-
-    def diagonal(row: Int, col: Int): Int = slice(row, col, true, true).product
-
-    def vertical(row: Int, col: Int): Int = slice(row, col, false, true).product
-
     (for {
-      r <- 0 until size
-      c <- 0 until size
-    } yield List(horizontal(r, c), diagonal(r, c), vertical(r, c)))
+      r <- 0 until gridSize
+      c <- 0 until gridSize
+    } yield List(
+      slice(r, c, 0,  1).product,  // East
+      slice(r, c, 1,  1).product,  // South-east
+      slice(r, c, 1,  0).product,  // South
+      slice(r, c, 1, -1).product)  // South-west
+    )
       .flatten
       .max
   }
