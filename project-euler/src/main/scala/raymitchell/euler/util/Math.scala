@@ -72,7 +72,7 @@ final class FancyLong(self: Long) {
 
     go(self, PrimeSequence, Nil)
   }
-  
+
   /**
     * Get the divisors of a number.  The divisors of a number n are the numbers
     * less than or equal to n which divide evenly into n.
