@@ -1,5 +1,7 @@
 package raymitchell.euler.problems
 
+import raymitchell.euler.util.Math._
+
 /**
   * A palindromic number reads the same both ways. The largest palindrome made
   * from the product of two 2-digit numbers is 9009 = 91 × 99.
@@ -12,8 +14,7 @@ object Problem4 {
     (for {
       a <- 100 to 999
       b <- 100 to 999
-      if isPalindromicNumber(a * b)
-    } yield a * b).max
-
-  private def isPalindromicNumber(n: Int) = n.toString == n.toString.reverse
+      c = a * b
+      if c.isPalindromic
+    } yield c).max
 }

@@ -109,6 +109,12 @@ final class FancyLong(self: Long) {
   def lcm(other: Long): Long = self * (other / (self gcd other))
 
   /**
+    * Return whether the number is palindromic.  A palindromic number reads the
+    * same both ways.
+    */
+  def isPalindromic: Boolean = self.toString == self.toString.reverse
+
+  /**
     * Return whether the number is amicable.  A number n is amicable if the sum
     * of it's divisors equals m, the sum of m's divisors equals n, and n != m.
     *
