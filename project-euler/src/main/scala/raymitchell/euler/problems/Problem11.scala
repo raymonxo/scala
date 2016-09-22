@@ -58,6 +58,10 @@ object Problem11 {
       )
     val gridSize = 20
 
+    /**
+      * Return sequence of 4 elements starting at row, col and stepping by
+      * rowStep and colStep for each subsequent elements.
+      */
     def slice(row: Int, col: Int, rowStep: Int, colStep: Int): Seq[Int] = {
       val sliceSize = 4
 
