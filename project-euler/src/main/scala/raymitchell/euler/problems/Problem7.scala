@@ -11,7 +11,7 @@ import raymitchell.euler.util.Math._
 object Problem7 {
 
   def solve(): Long =
-    PrimeSequence
+    PrimeNumbers
       .drop(10000)
       .head
 }

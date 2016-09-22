@@ -10,7 +10,7 @@ import raymitchell.euler.util.Math._
 object Problem10 {
 
   def solve(): Long =
-    PrimeSequence
+    PrimeNumbers
       .takeWhile(_ < 2000000)
       .sum
 }

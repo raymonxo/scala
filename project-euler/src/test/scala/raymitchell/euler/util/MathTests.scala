@@ -7,15 +7,15 @@ import raymitchell.euler.util.Math._
 class MathTests extends FlatSpec with Matchers {
 
   "Fibonaccis" should "start with the first 7 Fibonacci numbers" in {
-    FibonacciSequence.take(7) should be (Seq(0, 1, 1, 2, 3, 5, 8))
+    FibonacciNumbers.take(7) should be (Seq(0, 1, 1, 2, 3, 5, 8))
   }
 
   "Primes" should "start with the first 7 prime numbers" in {
-    PrimeSequence.take(7) should be (Seq(2, 3, 5, 7, 11, 13, 17))
+    PrimeNumbers.take(7) should be (Seq(2, 3, 5, 7, 11, 13, 17))
   }
 
   "Triangle numbers" should "start with the first 7 triangle numbers" in {
-    TriangleNumberSequence.take(7) should be (Seq(1, 3, 6, 10, 15, 21, 28))
+    TriangleNumbers.take(7) should be (Seq(1, 3, 6, 10, 15, 21, 28))
   }
 
   "Prime factors" should "return only the number for prime number" in {
