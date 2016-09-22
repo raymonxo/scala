@@ -10,7 +10,7 @@ import raymitchell.euler.util.Math._
   */
 object Problem7 {
 
-  def solve(): Int =
+  def solve(): Long =
     PrimeSequence
       .drop(10000)
       .head

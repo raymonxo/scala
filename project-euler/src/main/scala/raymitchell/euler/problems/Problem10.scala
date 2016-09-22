@@ -12,6 +12,5 @@ object Problem10 {
   def solve(): Long =
     PrimeSequence
       .takeWhile(_ < 2000000)
-      .map(_.toLong)
       .sum
 }
