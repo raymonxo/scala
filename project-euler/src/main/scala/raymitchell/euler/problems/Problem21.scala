@@ -18,15 +18,6 @@ import raymitchell.euler.util.Math._
 object Problem21 {
 
   def solve(): Int = {
-    val divisorSums = for (x <- 1 until 10000) yield (x, x.properDivisors.sum)
-
-    (for {
-      a <- divisorSums
-      b <- divisorSums
-      if a._2 == b._1   // d(a) = b
-      if b._2 == a._1   // d(b) = a
-      if a._1 != b._1   // a != b
-    } yield a._1)
-      .sum
+    (for { n <- 1 until 10000 if n.isAmicable } yield n).sum
   }
 }

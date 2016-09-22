@@ -107,4 +107,17 @@ final class FancyLong(self: Long) {
     * Implemented using reduction by the greatest common divisor.
     */
   def lcm(other: Long): Long = self * (other / (self gcd other))
+
+  /**
+    * Return whether the number is amicable.  A number n is amicable if the sum
+    * of it's divisors equals m, the sum of m's divisors equals n, and n != m.
+    *
+    * For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22,
+    * 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1,
+    * 2, 4, 71 and 142; so d(284) = 220.
+    */
+  def isAmicable: Boolean = {
+    val m = self.properDivisors.sum
+    m.properDivisors.sum == self && m != self
+  }
 }

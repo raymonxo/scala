@@ -41,4 +41,12 @@ class MathTests extends FlatSpec with Matchers {
   "Least common multiple" should "provide correct answer" in {
     8 lcm 12 should be (24)
   }
+
+  "Is amicable" should "return true for amicable number" in {
+    220.isAmicable should be (true)
+  }
+
+  "Is amicable" should "return true for non-amicable number" in {
+    17.isAmicable should be (false)
+  }
 }

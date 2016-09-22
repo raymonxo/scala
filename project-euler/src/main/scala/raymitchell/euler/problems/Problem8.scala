@@ -56,8 +56,7 @@ object Problem8 {
       .stripMargin
       .replace("\n", "")
       .map(_.asDigit.toLong)
-      .tails
-      .filter(_.length >= 13)
-      .map(_.take(13).product)
+      .sliding(13)
+      .map(_.product)
       .max
 }
