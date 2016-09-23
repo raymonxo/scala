@@ -18,5 +18,5 @@ import raymitchell.euler.util.Math._
 object Problem21 {
 
   def solve(): Int =
-    (for { n <- 1 until 10000 if n.isAmicable } yield n).sum
+    (for (n <- 1 until 10000 if n.isAmicable) yield n).sum
 }
