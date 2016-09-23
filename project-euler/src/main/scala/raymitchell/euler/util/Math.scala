@@ -40,7 +40,7 @@ object Math {
   val TriangleNumbers: Stream[Long] = 1 #::
     Stream
       .iterate(2L)(_ + 1)
-      .zip(TriangleNumbers)  // Zip previous triangle # with next nat #
+      .zip(TriangleNumbers)  // Zip next nat # with previous triangle #
       .map(n => n._1 + n._2)
 }
 
