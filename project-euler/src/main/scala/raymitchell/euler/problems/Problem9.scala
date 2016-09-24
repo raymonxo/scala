@@ -11,7 +11,7 @@ package raymitchell.euler.problems
   */
 object Problem9 {
 
-  def solve(): Int =
+  def solve: Int =
     (for {
       a <- 0 to 1000
       b <- a + 1 to 1000 - a

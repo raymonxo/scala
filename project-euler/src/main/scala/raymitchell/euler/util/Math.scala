@@ -99,7 +99,7 @@ final class FancyLong(self: Long) {
   @tailrec
   def gcd(other: Long): Long =
     if (other == 0) self
-    else            other gcd (self % other)
+    else            other.gcd(self % other)
 
   /**
     * Get least common multiple.

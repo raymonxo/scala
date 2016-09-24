@@ -10,7 +10,7 @@ import raymitchell.euler.util.Math._
   */
 object Problem7 {
 
-  def solve(): Long =
+  def solve: Long =
     PrimeNumbers
       .drop(10000)
       .head

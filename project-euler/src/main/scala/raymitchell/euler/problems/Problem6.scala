@@ -17,7 +17,7 @@ package raymitchell.euler.problems
   */
 object Problem6 {
 
-  def solve(): Int = squareOfSum(1 to 100) - sumOfSquares(1 to 100)
+  def solve: Int = squareOfSum(1 to 100) - sumOfSquares(1 to 100)
 
   private def squareOfSum(ns: Seq[Int]): Int = ns.sum * ns.sum
 

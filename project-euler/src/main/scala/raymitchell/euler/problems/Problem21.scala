@@ -17,6 +17,6 @@ import raymitchell.euler.util.Math._
   */
 object Problem21 {
 
-  def solve(): Int =
-    (for (n <- 1 until 10000 if n.isAmicable) yield n).sum
+  def solve: Long =
+    (for (n <- 1L until 10000 if n.isAmicable) yield n).sum
 }

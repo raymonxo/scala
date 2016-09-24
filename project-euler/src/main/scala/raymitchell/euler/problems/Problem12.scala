@@ -26,7 +26,7 @@ import raymitchell.euler.util.Math._
   */
 object Problem12 {
 
-  def solve(): Long =
+  def solve: Long =
     TriangleNumbers
       .dropWhile(_.divisors.length <= 500)
       .head

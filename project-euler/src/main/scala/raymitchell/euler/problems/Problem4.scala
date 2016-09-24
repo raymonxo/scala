@@ -10,7 +10,7 @@ import raymitchell.euler.util.Math._
   */
 object Problem4 {
 
-  def solve(): Int =
+  def solve: Int =
     (for {
       a <- 100 to 999
       b <- 100 to 999

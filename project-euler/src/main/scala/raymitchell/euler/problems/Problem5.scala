@@ -11,7 +11,7 @@ import raymitchell.euler.util.Math._
   */
 object Problem5 {
 
-  def solve(): Long =
+  def solve: Long =
     (1L to 20)
       .reduce((acc, n) => acc lcm n)
 }
