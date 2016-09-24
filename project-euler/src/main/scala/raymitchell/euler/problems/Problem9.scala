@@ -11,13 +11,15 @@ package raymitchell.euler.problems
   */
 object Problem9 {
 
-  def solve: Int =
+  def solve: Int = {
+    val limit = 1000
     (for {
-      a <- 0 to 1000
-      b <- a + 1 to 1000 - a
-      c <- b + 1 to 1000 - a - b
+      a <- 1 to limit / 3
+      b <- a + 1 to (limit - a) / 2
+      c <- b + 1 to limit - a - b
       if a * a + b * b == c * c
-      if a + b + c == 1000
+      if a + b + c == limit
     } yield a * b * c)
       .head
+  }
 }
