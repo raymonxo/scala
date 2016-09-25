@@ -18,8 +18,7 @@ package raymitchell.euler.problems
   */
 object Problem71 {
 
-  // Works because 1,000,000 is not divisible by 7
   def solve: Int = {
-    (3d / 7 * 1000000 - 1).toInt
+    3 * 1000000 / 7 - 1
   }
 }
