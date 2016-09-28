@@ -109,7 +109,7 @@ import raymitchell.euler.util.Math._
   */
 object Problem13 {
 
-  def solve: Long = {
+  def solve: String = {
     """37107287533902102798797998220837590246510135740250
       |46376937677490009712648124896970078050417018260538
       |74324986199524741059474233309513058123726617309629
@@ -212,10 +212,9 @@ object Problem13 {
       |53503534226472524250874054075591789781264330331690"""
       .stripMargin
       .split(System.lineSeparator)
-      .map(s => BigInt(s.filter(_.isDigit)))
+      .map(BigInt(_))
       .sum
       .toString
       .take(10)
-      .toLong
   }
 }
