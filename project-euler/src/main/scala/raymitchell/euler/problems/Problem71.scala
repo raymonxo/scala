@@ -18,7 +18,6 @@ package raymitchell.euler.problems
   */
 object Problem71 {
 
-  def solve: Int = {
+  def solve: Int =
     1000000 * 3 / 7 - 1
-  }
 }

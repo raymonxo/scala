@@ -107,7 +107,7 @@ package raymitchell.euler.problems
   */
 object Problem13 {
 
-  def solve: String = {
+  def solve: String =
     """37107287533902102798797998220837590246510135740250
       |46376937677490009712648124896970078050417018260538
       |74324986199524741059474233309513058123726617309629
@@ -214,5 +214,4 @@ object Problem13 {
       .sum
       .toString
       .take(10)
-  }
 }

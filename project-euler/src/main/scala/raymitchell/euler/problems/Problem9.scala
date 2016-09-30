@@ -16,7 +16,7 @@ object Problem9 {
     (for {
       a <- 1 to limit / 3
       b <- a + 1 to (limit - a) / 2
-      c <- b + 1 to limit - a - b
+      c = limit - a - b
       if a * a + b * b == c * c
       if a + b + c == limit
     } yield a * b * c)
