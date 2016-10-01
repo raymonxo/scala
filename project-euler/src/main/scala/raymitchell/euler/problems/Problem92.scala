@@ -1,5 +1,7 @@
 package raymitchell.euler.problems
 
+import scala.collection.mutable
+
 /**
   * A number chain is created by continuously adding the square of the digits
   * in a number to form a new number until it has been seen before.
@@ -17,5 +19,39 @@ package raymitchell.euler.problems
   */
 object Problem92 {
 
-  def solve: Int = ???
+  def solve: Int =
+    (1 until 10000000)
+      .map(getChainEnd)
+      .count(_ == 89)
+
+  /**
+    * Cache of previously calculated chain ends.
+    */
+  private val chainEnds = mutable.Map( 1 -> 1, 89 -> 89 )
+
+  /**
+    * Return the end of the chain starting at start.
+    */
+  private def getChainEnd(start: Int): Int = {
+
+    def next(n: Int): Int = n.toString.map(c => c.asDigit * c.asDigit).sum
+
+    // If the chain end has not been calculated before
+    if (!chainEnds.contains(start)) {
+
+      // Build the chain
+      val chain = mutable.Queue(start)
+      var end = start
+      while (!chainEnds.contains(end)) {
+        end = next(end)
+        chain += end
+      }
+      end = chainEnds(end)
+
+      // Cache each link of the chain
+      chain.foreach(n => chainEnds += (n -> end))
+    }
+
+    chainEnds(start)
+  }
 }
