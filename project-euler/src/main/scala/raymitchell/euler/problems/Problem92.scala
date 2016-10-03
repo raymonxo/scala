@@ -34,22 +34,28 @@ object Problem92 {
     */
   private def getChainEnd(start: Int): Int = {
 
-    def next(n: Int): Int = n.toString.map(c => c.asDigit * c.asDigit).sum
+    // Return the sum of the squares of n's digits.
+    def sumDigitSquares(n: Int): Int = {
+      n.toString.map { c =>
+        val d = c.asDigit
+        d * d
+      }.sum
+    }
 
     // If the chain end has not been calculated before
     if (!chainEnds.contains(start)) {
 
       // Build the chain
       val chain = mutable.Queue(start)
-      var end = start
-      while (!chainEnds.contains(end)) {
-        end = next(end)
-        chain += end
+      var next = start
+      while (!chainEnds.contains(next)) {
+        next = sumDigitSquares(next)
+        chain += next
       }
-      end = chainEnds(end)
+      next = chainEnds(next)
 
       // Cache each link of the chain
-      chain.foreach(n => chainEnds += (n -> end))
+      chain.foreach(n => chainEnds += (n -> next))
     }
 
     chainEnds(start)
