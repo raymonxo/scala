@@ -20,18 +20,19 @@ import scala.collection.mutable
 object Problem92 {
 
   def solve: Int =
-    (1 to MaxBegin)
-      .map(getEnd)
+    (1 to MaxNumberChainBeginning)
+      .map(getNumberChainEnding)
       .count(_ == 89)
 
-  private val BeginToEnd = mutable.Map( 1 -> 1, 89 -> 89 )
+  // Map from each number chain's first number to the chain's ending
+  private val NumberChainEndings = mutable.Map( 1 -> 1, 89 -> 89 )
 
-  private val MaxBegin = 9999999
+  private val MaxNumberChainBeginning = 9999999
 
-  private val MaxLink = sumDigitSquares(MaxBegin)
+  private val MaxLink = sumDigitSquares(MaxNumberChainBeginning)
 
   /**
-    * Return the sum of the squares of n's digits.
+    * Return the sum of the squares of n's digits
     */
   def sumDigitSquares(n: Int): Int = {
     n.toString.map { c =>
@@ -41,29 +42,28 @@ object Problem92 {
   }
 
   /**
-    * Return the end of the chain starting at begin.
+    * Return the ending of the chain starting at beginning
     */
-  private def getEnd(begin: Int): Int = {
-    var link = begin
+  private def getNumberChainEnding(beginning: Int): Int = {
+    var link = beginning
 
     // If the chain has not been calculated before
-    if (!BeginToEnd.contains(link)) {
+    if (!NumberChainEndings.contains(link)) {
+
       // Build the chain
       val chain =
         if (link <= MaxLink) mutable.Queue(link)
         else                 new mutable.Queue[Int]
-
-      while (!BeginToEnd.contains(link)) {
+      while (!NumberChainEndings.contains(link)) {
         link = sumDigitSquares(link)
         chain += link
       }
-
-      link = BeginToEnd(link)
+      link = NumberChainEndings(link)
 
       // Cache each link of the chain
-      chain.foreach(n => BeginToEnd += (n -> link))
+      chain.foreach(n => NumberChainEndings += (n -> link))
     }
 
-    BeginToEnd(link)
+    NumberChainEndings(link)
   }
 }
