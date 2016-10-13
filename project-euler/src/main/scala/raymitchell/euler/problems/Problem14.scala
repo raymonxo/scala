@@ -57,8 +57,7 @@ object Problem14 {
         .reverse
         .toList
         .zipWithIndex
-        .map { case (n, i) => (n, i + linkLength) }
-        .foreach { case (n, l) => CollatzLengths += (n -> l) }
+        .foreach { case (n, i) => CollatzLengths += (n -> (i + linkLength)) }
     }
 
     CollatzLengths(begin)
