@@ -34,16 +34,16 @@ object Problem14 {
   private val CollatzLengths = mutable.Map { 1L -> 1L }
 
   /**
-    * Return the length of the collatz sequence starting with beginning
+    * Return the length of the collatz sequence starting with begin
     */
-  private def getCollatzLength(beginning: Long): Long = {
+  private def getCollatzLength(begin: Long): Long = {
 
     // If the chain has not been calculated before
-    if (!CollatzLengths.contains(beginning)) {
+    if (!CollatzLengths.contains(begin)) {
 
       // Build the chain up to a known link
-      val chain = mutable.Queue(beginning)
-      var link = beginning
+      val chain = mutable.Queue(begin)
+      var link = begin
       do {
         link =
           if (link % 2 == 0) link / 2
@@ -61,6 +61,6 @@ object Problem14 {
         .foreach { case (n, l) => CollatzLengths += (n -> l) }
     }
 
-    CollatzLengths(beginning)
+    CollatzLengths(begin)
   }
 }
