@@ -52,12 +52,20 @@ object Problem14 {
       } while (!CollatzLengths.contains(link))
 
       // Cache length for each link of the chain
-      val linkLength = CollatzLengths(link)
-      chain
-        .reverse
-        .toList
-        .zipWithIndex
-        .foreach { case (n, i) => CollatzLengths += (n -> (i + linkLength)) }
+      CollatzLengths ++
+        chain
+          .reverse
+          .zipWithIndex
+          .map {
+            case (n, i) => n -> (i + CollatzLengths(link))
+          }
+
+//      chain
+//        .reverse
+//        .zipWithIndex
+//        .foreach {
+//          case (n, i) => CollatzLengths += (n -> (i + CollatzLengths(link)))
+//        }
     }
 
     CollatzLengths(begin)
