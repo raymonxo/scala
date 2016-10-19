@@ -59,7 +59,7 @@ object Problem92 {
       link = NumberChainEnds(link)
 
       // Cache each link of the chain
-      chain.foreach(n => NumberChainEnds += (n -> link))
+      chain.foreach(n => NumberChainEnds += n -> link)
     }
 
     NumberChainEnds(link)
