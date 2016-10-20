@@ -109,6 +109,16 @@ final class FancyLong(self: Long) {
   def lcm(other: Long): Long = self * (other / (self gcd other))
 
   /**
+    * Return all rotations of the number's digits.
+    *
+    * For example, the rotations of 197 are 197, 971, and 719.
+    */
+  def rotations: Seq[Long] = {
+    val s = self.toString
+    s.tails.toSeq.reverse.zip(s.inits.toSeq).map(p => (p._1 + p._2).toLong)
+  }
+
+  /**
     * Return whether the number is palindromic.  A palindromic number reads the
     * same both ways.
     */

@@ -42,6 +42,10 @@ class MathTests extends FlatSpec with Matchers {
     8 lcm 12 should be (24)
   }
 
+  "Rotations" should "provide correct answer" in {
+    197.rotations.toSet should be (Set(197, 971, 719))
+  }
+
   "Is amicable" should "return true for amicable number" in {
     220.isAmicable should be (true)
   }
