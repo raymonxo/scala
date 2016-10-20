@@ -14,12 +14,12 @@ import raymitchell.euler.util.Math._
 object Problem35 {
 
   def solve: Int = {
-    val Primes = PrimeNumbers
+    val primes = PrimeNumbers
       .takeWhile(_ < 1000000)
       .toSet
 
-    Primes
+    primes
       .map(_.rotations)
-      .count(_.forall(Primes.contains))
+      .count(_.forall(primes.contains))
   }
 }
