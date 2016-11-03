@@ -43,85 +43,59 @@ object Problem89 {
       .sum
   }
 
-  // Roman digits
-  case class Digit(name: String, value: Int)
-  val Digits = Seq(
-    Digit("M", 1000),
-    Digit("CM", 900),
-    Digit("D",  500),
-    Digit("CD", 400),
-    Digit("C",  100),
-    Digit("XC",  90),
-    Digit("L",   50),
-    Digit("XL",  40),
-    Digit("X",   10),
-    Digit("IX",   9),
-    Digit("V",    5),
-    Digit("IV",   4),
-    Digit("I",    1)
+  // Roman numerals
+  case class RomanNumeral(name: String, value: Int)
+  val RomanNumerals = Seq(
+    RomanNumeral("I",    1),
+    RomanNumeral("IV",   4),
+    RomanNumeral("V",    5),
+    RomanNumeral("IX",   9),
+    RomanNumeral("X",   10),
+    RomanNumeral("XL",  40),
+    RomanNumeral("L",   50),
+    RomanNumeral("XC",  90),
+    RomanNumeral("C",  100),
+    RomanNumeral("CD", 400),
+    RomanNumeral("D",  500),
+    RomanNumeral("CM", 900),
+    RomanNumeral("M", 1000)
   )
 
   /**
-    * Converts an Int to the most efficient Roman numeral.
+    * Converts an Int to the most efficiently formed Roman numeral.
     */
   private def intToRoman(value: Int): String = {
-    var result = ""
+    // Repeatedly extract the largest valued numeral until nothing is left
+    val sortedNumerals = RomanNumerals.sortBy(-_.value)
+    val result = new collection.mutable.StringBuilder
     var remaining = value
-
-    // Repeatedly extract the next largest roman digit until nothing is left
     while (remaining > 0) {
-      val digit = Digits.find(remaining >= _.value).getOrElse(Digits.head)
-      result += digit.name
-      remaining -= digit.value
+      val numeral = sortedNumerals
+        .find(remaining >= _.value)
+        .getOrElse(sortedNumerals.head)
+      result.append(numeral.name)
+      remaining -= numeral.value
     }
-
-    result
+    result.toString
   }
 
   /**
     * Converts a Roman numeral to an Int.  Assumes the Roman numeral is
     * well-formed but not necessarily in the most efficient form.
     */
-  private def romanToInt(roman: String): Int = {
-    // Loop over all numerals to compute result
+  private def romanToInt(value: String): Int = {
+    // Repeatedly extract the longest named numeral from the front until
+    // nothing is left
+    val sortedNumerals = RomanNumerals.sortBy(-_.name.length)
     var result = 0
-    var i = 0
-    while (i < roman.length) {
-      // Get current and next numerals
-      val current: Char = roman(i)
-      val next: Option[Char] =
-        if (i + 1 < roman.length) Some(roman(i + 1)) else None
-
-      // Add value of current numeral to result
-      result += (current match {
-        case 'I' =>
-          next match {
-            case Some('V') => -1
-            case Some('X') => -1
-            case _ => 1
-          }
-        case 'V' => 5
-        case 'X' =>
-          next match {
-            case Some('L') => -10
-            case Some('C') => -10
-            case _ => 10
-          }
-        case 'L' => 50
-        case 'C' =>
-          next match {
-            case Some('D') => -100
-            case Some('M') => -100
-            case _ => 100
-          }
-        case 'D' => 500
-        case 'M' => 1000
-      })
-
-      // Move to next numeral
-      i += 1
+    var remaining = value
+    while (remaining.length > 0) {
+      val numeral = sortedNumerals
+        .find(numeral => remaining.startsWith(numeral.name))
+        .getOrElse(sortedNumerals.head)
+      result += numeral.value
+      remaining = remaining.drop(numeral.name.length)
     }
-
     result
   }
 }
