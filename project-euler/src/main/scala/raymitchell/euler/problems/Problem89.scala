@@ -44,8 +44,8 @@ object Problem89 {
   }
 
   // Roman numerals
-  case class RomanNumeral(name: String, value: Int)
-  val RomanNumerals = Seq(
+  private case class RomanNumeral(name: String, value: Int)
+  private val RomanNumerals = Seq(
     RomanNumeral("I",    1),
     RomanNumeral("IV",   4),
     RomanNumeral("V",    5),
