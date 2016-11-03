@@ -46,19 +46,19 @@ object Problem89 {
   // Roman numerals
   private case class RomanNumeral(name: String, value: Int)
   private val RomanNumerals = Seq(
-    RomanNumeral("I",    1),
-    RomanNumeral("IV",   4),
-    RomanNumeral("V",    5),
-    RomanNumeral("IX",   9),
-    RomanNumeral("X",   10),
-    RomanNumeral("XL",  40),
-    RomanNumeral("L",   50),
-    RomanNumeral("XC",  90),
-    RomanNumeral("C",  100),
-    RomanNumeral("CD", 400),
-    RomanNumeral("D",  500),
-    RomanNumeral("CM", 900),
-    RomanNumeral("M", 1000)
+    RomanNumeral( "I",    1),
+    RomanNumeral("IV",    4),
+    RomanNumeral( "V",    5),
+    RomanNumeral("IX",    9),
+    RomanNumeral( "X",   10),
+    RomanNumeral("XL",   40),
+    RomanNumeral( "L",   50),
+    RomanNumeral("XC",   90),
+    RomanNumeral( "C",  100),
+    RomanNumeral("CD",  400),
+    RomanNumeral( "D",  500),
+    RomanNumeral("CM",  900),
+    RomanNumeral( "M", 1000)
   )
 
   /**
