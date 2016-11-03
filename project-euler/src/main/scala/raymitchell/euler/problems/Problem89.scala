@@ -44,7 +44,7 @@ object Problem89 {
   }
 
   // Roman numerals
-  private case class RomanNumeral(name: String, value: Int)
+  private case class RomanNumeral(symbol: String, value: Int)
   private val RomanNumerals = Seq(
     RomanNumeral( "I",    1),
     RomanNumeral("IV",    4),
@@ -73,7 +73,7 @@ object Problem89 {
       val numeral = sortedNumerals
         .find(remaining >= _.value)
         .getOrElse(sortedNumerals.head)
-      result.append(numeral.name)
+      result.append(numeral.symbol)
       remaining -= numeral.value
     }
     result.toString
@@ -86,15 +86,15 @@ object Problem89 {
   private def romanToInt(value: String): Int = {
     // Repeatedly extract the longest named numeral from the front until
     // nothing is left
-    val sortedNumerals = RomanNumerals.sortBy(-_.name.length)
+    val sortedNumerals = RomanNumerals.sortBy(-_.symbol.length)
     var result = 0
     var remaining = value
     while (remaining.length > 0) {
       val numeral = sortedNumerals
-        .find(numeral => remaining.startsWith(numeral.name))
+        .find(numeral => remaining.startsWith(numeral.symbol))
         .getOrElse(sortedNumerals.head)
       result += numeral.value
-      remaining = remaining.drop(numeral.name.length)
+      remaining = remaining.drop(numeral.symbol.length)
     }
     result
   }
